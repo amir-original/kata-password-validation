@@ -1,0 +1,1 @@
+More info about password validation kata : https://katalyst.codurance.com/password-validation
