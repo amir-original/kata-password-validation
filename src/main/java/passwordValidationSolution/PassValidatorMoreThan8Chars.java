@@ -1,9 +1,9 @@
 package passwordValidationSolution;
 
-public class PasswordMoreThan8Characters extends PasswordValidator {
+public class PassValidatorMoreThan8Chars extends PasswordValidator {
 
 
-    public PasswordMoreThan8Characters(String password) {
+    public PassValidatorMoreThan8Chars(String password) {
         super(password,8);
     }
 

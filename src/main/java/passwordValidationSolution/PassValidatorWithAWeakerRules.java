@@ -1,10 +1,10 @@
 package passwordValidationSolution;
 
-public class NewPasswordValidator extends PasswordValidator {
+public class PassValidatorWithAWeakerRules extends PasswordValidator {
 
     private static final int NUMBER_OF_FAILURES_ALLOWED = 1;
 
-    public NewPasswordValidator(String password) {
+    public PassValidatorWithAWeakerRules(String password) {
         super(password, 8);
     }
 
@@ -29,7 +29,7 @@ public class NewPasswordValidator extends PasswordValidator {
 
     private boolean matchRequirements(int numberOfAcceptedRules) {
         if (numberOfAcceptedRules <= NUMBER_OF_FAILURES_ALLOWED)
-            throw new InvalidPasswordException(ErrorCode.NUMBER_OF_FAILURES_ALLOWED);
+            throw new InvalidPasswordException(ErrorCode.ILLEGAL_NUMBER_OF_FAILURES_ALLOWED);
 
         return true;
     }

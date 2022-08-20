@@ -1,8 +1,8 @@
 package passwordValidationSolution;
 
-public class PasswordMoreThan16Characters extends PasswordValidator {
+public class PassValidatorMoreThan16Chars extends PasswordValidator {
 
-    public PasswordMoreThan16Characters(String password) {
+    public PassValidatorMoreThan16Chars(String password) {
         super(password,16);
     }
 
