@@ -25,7 +25,9 @@ public class PasswordValidationRules {
     }
 
     public  boolean containsAtLeastOneNumber() {
-        return password.matches(".*[\\d].*");
+        if(password.matches(".*[\\d].*")) return true;
+
+        throw new InvalidPasswordException(MISSING_NUMBER);
     }
 
     public boolean containsAtLeastOneUnderscore() {

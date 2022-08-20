@@ -32,7 +32,9 @@ public class PasswordValidatorShould {
     @Test
     void invalid_password_missed_a_lowercase() {
         try {
+            new PassValidatorMoreThan6Chars("ABCJ1245_").isValid();
             new PassValidatorMoreThan8Chars("ABCDEFGHIJ1245_").isValid();
+            new PassValidatorMoreThan16Chars("ABCDEFGHIJ12447sfe__5_").isValid();
         }catch (InvalidPasswordException e){
             assertThat(e.getErrorCode()).isEqualTo(ErrorCode.MISSING_LOWERCASE);
         }
@@ -42,7 +44,9 @@ public class PasswordValidatorShould {
     @Test
     void invalid_password_misses_an_uppercase_char() {
        try {
+           new PassValidatorMoreThan6Chars("__abcde56").isValid();
            new PassValidatorMoreThan8Chars("__abcdefghij123456").isValid();
+           new PassValidatorMoreThan16Chars("cvscdefghijsr556_____").isValid();
        }catch (InvalidPasswordException e){
            assertThat(e.getErrorCode()).isEqualTo(ErrorCode.MISSING_UPPERCASE);
        }
@@ -53,6 +57,7 @@ public class PasswordValidatorShould {
     void invalid_password_misses_an_underscore() {
         try {
             new PassValidatorMoreThan8Chars("abcdeAVfghij123456").isValid();
+            new PassValidatorMoreThan16Chars("7fytsstghASD123TGD6").isValid();
         }catch (InvalidPasswordException e){
             assertThat(e.getErrorCode()).isEqualTo(ErrorCode.MISSING_UNDERSCORE);
         }
@@ -61,7 +66,9 @@ public class PasswordValidatorShould {
     @Test
     void invalid_password_is_shorter_than_required() {
         try {
-            new PassValidatorMoreThan8Chars("abcDe8").isValid();
+            new PassValidatorMoreThan6Chars("_Aab8").isValid();
+            new PassValidatorMoreThan8Chars("abcD7_").isValid();
+            new PassValidatorMoreThan16Chars("Ab_cDeUYR7").isValid();
         }catch (InvalidPasswordException e){
             assertThat(e.getErrorCode()).isEqualTo(ErrorCode.INVALID_PASSWORD_LENGTH);
         }
