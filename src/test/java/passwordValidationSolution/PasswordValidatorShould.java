@@ -64,7 +64,7 @@ public class PasswordValidatorShould {
     }
 
     @Test
-    void invalid_password_is_shorter_than_required() {
+    void invalid_password_is_shorter_than_required_length() {
         try {
             new PassValidatorMoreThan6Chars("_Aab8").isValid();
             new PassValidatorMoreThan8Chars("abcD7_").isValid();
