@@ -7,12 +7,12 @@ public class PassValidatorMoreThan6Chars extends PasswordValidator {
     }
 
     public boolean isValid() {
-        return matchesAllRequirements();
+        return hasMatchWithAllValidationRules();
     }
 
     @Override
-    protected boolean matchesAllRequirements() {
-        return super.matchesAllRequirements() && rules.containsAtLeastOneNumber();
+    protected boolean hasMatchWithAllValidationRules() {
+        return super.hasMatchWithAllValidationRules() && rules.containsAtLeastOneNumber();
     }
 
 }

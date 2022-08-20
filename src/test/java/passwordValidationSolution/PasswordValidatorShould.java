@@ -54,7 +54,6 @@ public class PasswordValidatorShould {
         try {
             new PassValidatorMoreThan8Chars("abcdeAVfghij123456").isValid();
         }catch (InvalidPasswordException e){
-            System.out.println(e.getErrorCode());
             assertThat(e.getErrorCode()).isEqualTo(ErrorCode.MISSING_UNDERSCORE);
         }
     }

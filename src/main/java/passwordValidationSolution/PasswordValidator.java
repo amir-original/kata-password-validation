@@ -10,7 +10,7 @@ public abstract class PasswordValidator {
 
     public abstract boolean isValid();
 
-    protected boolean matchesAllRequirements() {
+    protected boolean hasMatchWithAllValidationRules() {
         return rules.hasTheMinRequirementLength() &&
                 rules.containsAtLeastOneLowercaseChar() &&
                 rules.containsAtLeastOneUppercaseChar();
