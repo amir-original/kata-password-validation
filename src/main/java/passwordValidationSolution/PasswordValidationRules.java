@@ -1,7 +1,5 @@
 package passwordValidationSolution;
 
-import static passwordValidationSolution.ErrorCode.*;
-
 public class PasswordValidationRules {
 
     private final String password;
@@ -13,32 +11,22 @@ public class PasswordValidationRules {
     }
 
     public boolean containsAtLeastOneLowercaseChar() {
-        if (password.matches(".*[a-z].*")) return true;
-
-        throw new InvalidPasswordException(MISSING_LOWERCASE);
+        return password.matches(".*[a-z].*");
     }
 
     public boolean containsAtLeastOneUppercaseChar() {
-        if (password.matches(".*[A-Z].*")) return true;
-
-        throw new InvalidPasswordException(MISSING_UPPERCASE);
+        return password.matches(".*[A-Z].*");
     }
 
     public  boolean containsAtLeastOneNumber() {
-        if(password.matches(".*[\\d].*")) return true;
-
-        throw new InvalidPasswordException(MISSING_NUMBER);
+        return password.matches(".*[\\d].*");
     }
 
     public boolean containsAtLeastOneUnderscore() {
-        if(password.matches(".*[_].*")) return true;
-
-        throw new InvalidPasswordException(MISSING_UNDERSCORE);
+        return password.matches(".*[_].*");
     }
 
     public boolean hasTheMinRequirementLength() {
-        if (password.length() > minRequiredLength) return true;
-
-        throw new InvalidPasswordException(INVALID_PASSWORD_LENGTH);
+        return password.length() > minRequiredLength;
     }
 }

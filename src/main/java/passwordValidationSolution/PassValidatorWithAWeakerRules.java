@@ -1,6 +1,6 @@
 package passwordValidationSolution;
 
-import static passwordValidationSolution.ErrorCode.ILLEGAL_NUMBER_OF_FAILURES_ALLOWED;
+import static passwordValidationSolution.ErrorCode.*;
 
 public class PassValidatorWithAWeakerRules extends PasswordValidator {
 
@@ -12,27 +12,27 @@ public class PassValidatorWithAWeakerRules extends PasswordValidator {
 
     @Override
     public boolean isValid() {
-        return hasMatchWithAllValidationRules();
+        checkAllValidationRules();
+
+        return hasMatchAllValidationRules();
+    }
+
+    private void checkAllValidationRules() {
+        if (!rules.hasTheMinRequirementLength()) errorCodes.add(INVALID_PASSWORD_LENGTH);
+        if (!rules.containsAtLeastOneUppercaseChar()) errorCodes.add(MISSING_UPPERCASE);
+        if (!rules.containsAtLeastOneNumber()) errorCodes.add(MISSING_NUMBER);
+        if (!rules.containsAtLeastOneUnderscore()) errorCodes.add(MISSING_UNDERSCORE);
     }
 
     @Override
-    protected boolean hasMatchWithAllValidationRules() {
-        int numOfAcceptedRules = 0;
-        try {
-            if (rules.hasTheMinRequirementLength()) numOfAcceptedRules++;
-            if (rules.containsAtLeastOneUppercaseChar()) numOfAcceptedRules++;
-            if (rules.containsAtLeastOneNumber()) numOfAcceptedRules++;
-            if (rules.containsAtLeastOneUnderscore()) numOfAcceptedRules++;
+    protected boolean hasMatchAllValidationRules() {
+        if (hasMatchWithTheNumberOfAllowedFailure()) return true;
 
-        } catch (InvalidPasswordException ignored) {}
-
-        return hasMatchWithTheNumberOfAllowedFailure(numOfAcceptedRules);
+        errorCodes.add(ILLEGAL_NUMBER_OF_FAILURES_ALLOWED);
+        throw new InvalidPasswordException(errorCodes);
     }
 
-    private boolean hasMatchWithTheNumberOfAllowedFailure(int numberOfAcceptedRules) {
-        if (numberOfAcceptedRules <= NUMBER_OF_FAILURES_ALLOWED)
-            throw new InvalidPasswordException(ILLEGAL_NUMBER_OF_FAILURES_ALLOWED);
-
-        return true;
+    private boolean hasMatchWithTheNumberOfAllowedFailure() {
+        return errorCodes.size() <= NUMBER_OF_FAILURES_ALLOWED;
     }
 }

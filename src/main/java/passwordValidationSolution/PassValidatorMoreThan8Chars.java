@@ -1,21 +1,18 @@
 package passwordValidationSolution;
 
+import static passwordValidationSolution.ErrorCode.*;
+
 public class PassValidatorMoreThan8Chars extends PasswordValidator {
 
-
     public PassValidatorMoreThan8Chars(String password) {
-        super(password,8);
+        super(password, 8);
     }
 
     public boolean isValid() {
-        return hasMatchWithAllValidationRules();
-    }
+        if (!rules.containsAtLeastOneNumber()) errorCodes.add(MISSING_NUMBER);
+        if (!rules.containsAtLeastOneUnderscore()) errorCodes.add(MISSING_UNDERSCORE);
 
-    @Override
-    protected boolean hasMatchWithAllValidationRules() {
-        return super.hasMatchWithAllValidationRules() &&
-                rules.containsAtLeastOneNumber() &&
-                rules.containsAtLeastOneUnderscore();
+        return hasMatchAllValidationRules();
     }
 
 }

@@ -1,5 +1,7 @@
 package passwordValidationSolution;
 
+import static passwordValidationSolution.ErrorCode.MISSING_NUMBER;
+
 public class PassValidatorMoreThan6Chars extends PasswordValidator {
 
     public PassValidatorMoreThan6Chars(String password) {
@@ -7,12 +9,9 @@ public class PassValidatorMoreThan6Chars extends PasswordValidator {
     }
 
     public boolean isValid() {
-        return hasMatchWithAllValidationRules();
-    }
+        if(!rules.containsAtLeastOneNumber()) errorCodes.add(MISSING_NUMBER);
 
-    @Override
-    protected boolean hasMatchWithAllValidationRules() {
-        return super.hasMatchWithAllValidationRules() && rules.containsAtLeastOneNumber();
+        return hasMatchAllValidationRules();
     }
 
 }

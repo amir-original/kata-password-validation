@@ -1,17 +1,16 @@
 package passwordValidationSolution;
 
-import static passwordValidationSolution.ErrorCode.OK;
+import java.util.Set;
 
 public class InvalidPasswordException extends RuntimeException {
 
-    private ErrorCode errorCode = OK;
+    private final Set<ErrorCode> errorCodes;
 
-    public InvalidPasswordException(ErrorCode errorCode) {
-        this.errorCode = errorCode;
+    public InvalidPasswordException(Set<ErrorCode> errorCode) {
+        this.errorCodes = errorCode;
     }
 
-    public ErrorCode getErrorCode(){
-        return errorCode;
+    public Set<ErrorCode> getErrors(){
+        return errorCodes;
     }
-
 }
