@@ -1,4 +1,4 @@
-package passwordValidationSolution;
+package PasswordValiationStrategy;
 
 import java.util.Set;
 

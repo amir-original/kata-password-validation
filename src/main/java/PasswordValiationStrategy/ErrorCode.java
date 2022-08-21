@@ -1,4 +1,4 @@
-package passwordValidationSolution;
+package PasswordValiationStrategy;
 
 public enum ErrorCode {
     INVALID_PASSWORD_LENGTH,MISSING_LOWERCASE,MISSING_UPPERCASE
