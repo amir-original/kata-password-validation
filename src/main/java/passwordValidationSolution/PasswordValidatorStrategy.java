@@ -1,16 +1,16 @@
 package passwordValidationSolution;
 
-public class PasswordValidatorFactory {
+public class PasswordValidatorStrategy {
 
     private final String password;
     private final PasswordType type;
 
-    public PasswordValidatorFactory(String password, PasswordType type) {
+    public PasswordValidatorStrategy(String password, PasswordType type) {
         this.password = password;
         this.type = type;
     }
 
-    public PasswordValidator getInstance() {
+    public boolean isValid() {
         PasswordValidator passwordValidator;
 
         switch (type) {
@@ -29,6 +29,6 @@ public class PasswordValidatorFactory {
             default:
                 throw new IllegalStateException();
         }
-        return passwordValidator;
+        return passwordValidator.isValid();
     }
 }

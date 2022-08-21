@@ -16,7 +16,7 @@ public abstract class PasswordValidator {
     public abstract boolean isValid();
 
     protected boolean hasMatchAllValidationRules() {
-        if (hasMatchWithDefaultValidationRules() && errorCodes.isEmpty()) return true;
+        if (hasMatchWithDefaultValidationRules()) return true;
 
         throw new InvalidPasswordException(errorCodes);
     }
