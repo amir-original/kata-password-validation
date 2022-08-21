@@ -1,16 +1,14 @@
 package PasswordValiationStrategy;
 
-import static PasswordValiationStrategy.ErrorCode.MISSING_NUMBER;
-import static PasswordValiationStrategy.ErrorCode.MISSING_UNDERSCORE;
+import static PasswordValiationStrategy.ErrorCode.*;
 import static PasswordValiationStrategy.PasswordLength.MORE_THAN_8_CHARS;
 
 
-public class PassValidatorMoreThan8Chars extends AbstractPasswordValidation {
+public class PassValidatorMoreThan8Chars extends AbstractPasswordValidator {
 
     public PassValidatorMoreThan8Chars() {
         super(MORE_THAN_8_CHARS);
     }
-
 
     @Override
     public boolean isValid(String password) {

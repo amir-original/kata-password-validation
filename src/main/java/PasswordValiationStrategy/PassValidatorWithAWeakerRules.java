@@ -4,7 +4,7 @@ import static PasswordValiationStrategy.ErrorCode.*;
 import static PasswordValiationStrategy.PasswordLength.MORE_THAN_8_CHARS;
 
 
-public class PassValidatorWithAWeakerRules extends AbstractPasswordValidation {
+public class PassValidatorWithAWeakerRules extends AbstractPasswordValidator {
 
     private static final int NUMBER_OF_FAILURES_ALLOWED = 1;
 
@@ -18,7 +18,7 @@ public class PassValidatorWithAWeakerRules extends AbstractPasswordValidation {
         return hasMatchWithDefaultValidationRules(password);
     }
 
-    protected boolean hasMatchWithDefaultValidationRules(String password) {
+    private boolean hasMatchWithDefaultValidationRules(String password) {
         checkAllValidationRules(password);
 
         return hasMatchAllValidationRules();
@@ -33,7 +33,7 @@ public class PassValidatorWithAWeakerRules extends AbstractPasswordValidation {
     }
 
 
-    protected boolean hasMatchAllValidationRules() {
+    private boolean hasMatchAllValidationRules() {
         if (hasMatchWithTheNumberOfAllowedFailure()) return true;
 
         errorCodes.add(ILLEGAL_NUMBER_OF_FAILURES_ALLOWED);

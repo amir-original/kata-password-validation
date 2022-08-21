@@ -5,12 +5,12 @@ import java.util.Set;
 
 import static PasswordValiationStrategy.ErrorCode.*;
 
-public abstract class AbstractPasswordValidation implements PasswordValidatorStrategy {
+public abstract class AbstractPasswordValidator implements PasswordValidatorStrategy {
 
     protected PasswordValidationRules rules;
     protected Set<ErrorCode> errorCodes = new LinkedHashSet<>();
 
-    public AbstractPasswordValidation(PasswordLength passwordLength) {
+    public AbstractPasswordValidator(PasswordLength passwordLength) {
         this.rules = new PasswordValidationRules(passwordLength);
     }
 
