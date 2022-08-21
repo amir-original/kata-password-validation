@@ -5,4 +5,5 @@ public enum PasswordType {
     VALIDATION2,
     VALIDATION3,
     VALIDATION4,
+    VALIDATION5
 }

@@ -17,12 +17,12 @@ public class PassValidatorWithAWeakerRules extends PasswordValidator {
 
     @Override
     protected boolean hasMatchWithDefaultValidationRules() {
-        checkAllValidation();
-
+        checkAllValidationRules();
         return hasMatchAllValidationRules();
     }
 
-    private void checkAllValidation() {
+    @Override
+    protected void checkAllValidationRules() {
         if (!rules.hasTheMinRequirementLength()) errorCodes.add(INVALID_PASSWORD_LENGTH);
         if (!rules.containsAtLeastOneUppercaseChar()) errorCodes.add(MISSING_UPPERCASE);
         if (!rules.containsAtLeastOneNumber()) errorCodes.add(MISSING_NUMBER);

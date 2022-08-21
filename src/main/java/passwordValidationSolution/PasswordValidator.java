@@ -22,10 +22,13 @@ public abstract class PasswordValidator {
     }
 
     protected boolean hasMatchWithDefaultValidationRules() {
+        checkAllValidationRules();
+        return errorCodes.isEmpty();
+    }
+
+    protected void checkAllValidationRules() {
         if (!rules.hasTheMinRequirementLength()) errorCodes.add(INVALID_PASSWORD_LENGTH);
         if (!rules.containsAtLeastOneLowercaseChar()) errorCodes.add(MISSING_LOWERCASE);
         if (!rules.containsAtLeastOneUppercaseChar()) errorCodes.add(MISSING_UPPERCASE);
-
-        return errorCodes.isEmpty();
     }
 }

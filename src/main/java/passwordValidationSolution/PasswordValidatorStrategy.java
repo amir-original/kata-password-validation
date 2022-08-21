@@ -27,7 +27,7 @@ public class PasswordValidatorStrategy {
                 passwordValidator = new PassValidatorWithAWeakerRules(password);
                 break;
             default:
-                throw new IllegalStateException();
+                throw new InvalidPasswordTypeException();
         }
         return passwordValidator.isValid();
     }

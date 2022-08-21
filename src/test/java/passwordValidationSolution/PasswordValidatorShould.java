@@ -3,6 +3,7 @@ package passwordValidationSolution;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static passwordValidationSolution.ErrorCode.*;
 import static passwordValidationSolution.PasswordType.*;
 
@@ -94,4 +95,10 @@ public class PasswordValidatorShould {
         }
     }
 
+    @Test
+    void throw_invalid_password_type_exception_when_a_password_of_different_type_is_entered_as_input() {
+        assertThatExceptionOfType(InvalidPasswordTypeException.class)
+                .isThrownBy(()->new PasswordValidatorStrategy("cabcd124537", VALIDATION5).isValid());
+
+    }
 }

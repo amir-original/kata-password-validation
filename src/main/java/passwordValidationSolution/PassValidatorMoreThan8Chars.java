@@ -9,10 +9,15 @@ public class PassValidatorMoreThan8Chars extends PasswordValidator {
     }
 
     public boolean isValid() {
+        return hasMatchAllValidationRules();
+    }
+
+    @Override
+    protected void checkAllValidationRules() {
+        super.checkAllValidationRules();
+
         if (!rules.containsAtLeastOneNumber()) errorCodes.add(MISSING_NUMBER);
         if (!rules.containsAtLeastOneUnderscore()) errorCodes.add(MISSING_UNDERSCORE);
-
-        return hasMatchAllValidationRules();
     }
 
 }

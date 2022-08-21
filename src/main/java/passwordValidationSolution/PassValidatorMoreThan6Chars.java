@@ -9,9 +9,14 @@ public class PassValidatorMoreThan6Chars extends PasswordValidator {
     }
 
     public boolean isValid() {
-        if(!rules.containsAtLeastOneNumber()) errorCodes.add(MISSING_NUMBER);
-
         return hasMatchAllValidationRules();
+    }
+
+    @Override
+    protected void checkAllValidationRules() {
+        super.checkAllValidationRules();
+
+        if(!rules.containsAtLeastOneNumber()) errorCodes.add(MISSING_NUMBER);
     }
 
 }

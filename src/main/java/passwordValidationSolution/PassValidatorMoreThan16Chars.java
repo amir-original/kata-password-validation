@@ -9,9 +9,14 @@ public class PassValidatorMoreThan16Chars extends PasswordValidator {
     }
 
     public boolean isValid() {
-        if(!rules.containsAtLeastOneUnderscore()) errorCodes.add(MISSING_UNDERSCORE);
-
         return hasMatchAllValidationRules();
+    }
+
+    @Override
+    protected void checkAllValidationRules() {
+        super.checkAllValidationRules();
+
+        if(!rules.containsAtLeastOneUnderscore()) errorCodes.add(MISSING_UNDERSCORE);
     }
 
 
