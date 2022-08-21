@@ -1,18 +1,17 @@
 package passwordValidationSolution;
 
-public class PasswordValidatorStrategy {
+public class PasswordValidatorFactory {
 
     private final String password;
     private final PasswordType type;
 
-    public PasswordValidatorStrategy(String password, PasswordType type) {
+    public PasswordValidatorFactory(String password, PasswordType type) {
         this.password = password;
         this.type = type;
     }
 
-    public boolean isValid() {
+    public PasswordValidator getInstance() {
         PasswordValidator passwordValidator;
-
         switch (type) {
             case VALIDATION1:
                 passwordValidator = new PassValidatorMoreThan8Chars(password);
@@ -29,6 +28,6 @@ public class PasswordValidatorStrategy {
             default:
                 throw new InvalidPasswordTypeException();
         }
-        return passwordValidator.isValid();
+        return passwordValidator;
     }
 }
