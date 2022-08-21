@@ -2,11 +2,13 @@ package PasswordValiationStrategy;
 
 import static PasswordValiationStrategy.ErrorCode.MISSING_NUMBER;
 import static PasswordValiationStrategy.ErrorCode.MISSING_UNDERSCORE;
+import static PasswordValiationStrategy.PasswordLength.MORE_THAN_8_CHARS;
 
 
 public class PassValidatorMoreThan8Chars extends AbstractPasswordValidation {
+
     public PassValidatorMoreThan8Chars() {
-        this.rules = new PasswordValidationRules(6);
+        super(MORE_THAN_8_CHARS);
     }
 
 
@@ -17,6 +19,7 @@ public class PassValidatorMoreThan8Chars extends AbstractPasswordValidation {
         return errorCodes.isEmpty();
     }
 
+    @Override
     protected void checkAllValidationRules(String password) {
         super.checkAllValidationRules(password);
 

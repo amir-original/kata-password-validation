@@ -10,6 +10,9 @@ public abstract class AbstractPasswordValidation implements PasswordValidatorStr
     protected PasswordValidationRules rules;
     protected Set<ErrorCode> errorCodes = new LinkedHashSet<>();
 
+    public AbstractPasswordValidation(PasswordLength passwordLength) {
+        this.rules = new PasswordValidationRules(passwordLength);
+    }
 
     protected void checkAllValidationRules(String password) {
         if (!rules.hasTheMinRequirementLength(password)) errorCodes.add(INVALID_PASSWORD_LENGTH);

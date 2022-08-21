@@ -1,13 +1,7 @@
 package PasswordValiationStrategy;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
-import static passwordValidationSolution.ErrorCode.*;
-
 public class PasswordValidator {
 
-    protected Set<ErrorCode> errorCodes = new LinkedHashSet<>();
     private final String password;
     private final PasswordValidatorStrategy passwordValidator;
 

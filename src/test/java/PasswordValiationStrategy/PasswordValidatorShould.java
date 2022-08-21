@@ -106,11 +106,4 @@ public class PasswordValidatorShould {
         }
     }
 
-/*    @Test
-    void throw_invalid_password_type_exception_when_a_password_of_different_type_is_entered_as_input() {
-        assertThatExceptionOfType(InvalidPasswordTypeException.class)
-                .isThrownBy(() -> new PasswordValidatorFactory("cabcd124537", VALIDATION5).isValid());
-
-    }*/
-
 }

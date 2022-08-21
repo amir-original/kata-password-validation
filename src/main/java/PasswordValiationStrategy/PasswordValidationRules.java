@@ -2,9 +2,9 @@ package PasswordValiationStrategy;
 
 public class PasswordValidationRules {
 
-    private final int minRequiredLength;
+    private final PasswordLength minRequiredLength;
 
-    public PasswordValidationRules(int minRequiredLength) {
+    public PasswordValidationRules(PasswordLength minRequiredLength) {
         this.minRequiredLength = minRequiredLength;
     }
 
@@ -25,6 +25,6 @@ public class PasswordValidationRules {
     }
 
     public boolean hasTheMinRequirementLength(String password) {
-        return password.length() > minRequiredLength;
+        return password.length() > minRequiredLength.toInt();
     }
 }

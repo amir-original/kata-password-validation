@@ -4,12 +4,13 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static PasswordValiationStrategy.ErrorCode.*;
+import static PasswordValiationStrategy.PasswordLength.MORE_THAN_6_CHARS;
 
 
 public class PassValidatorMoreThan6Chars extends AbstractPasswordValidation {
 
     public PassValidatorMoreThan6Chars() {
-        this.rules = new PasswordValidationRules(6);
+        super(MORE_THAN_6_CHARS);
     }
 
     @Override
@@ -19,6 +20,7 @@ public class PassValidatorMoreThan6Chars extends AbstractPasswordValidation {
         return errorCodes.isEmpty();
     }
 
+    @Override
     protected void checkAllValidationRules(String password) {
        super.checkAllValidationRules(password);
 

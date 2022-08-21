@@ -1,20 +1,15 @@
 package PasswordValiationStrategy;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 import static PasswordValiationStrategy.ErrorCode.*;
+import static PasswordValiationStrategy.PasswordLength.MORE_THAN_8_CHARS;
 
 
-public class PassValidatorWithAWeakerRules implements PasswordValidatorStrategy {
+public class PassValidatorWithAWeakerRules extends AbstractPasswordValidation {
 
     private static final int NUMBER_OF_FAILURES_ALLOWED = 1;
 
-    private PasswordValidationRules rules;
-    private Set<ErrorCode> errorCodes = new LinkedHashSet<>();
-
     public PassValidatorWithAWeakerRules() {
-        this.rules = new PasswordValidationRules(8);
+        super(MORE_THAN_8_CHARS);
     }
 
 
@@ -25,10 +20,11 @@ public class PassValidatorWithAWeakerRules implements PasswordValidatorStrategy 
 
     protected boolean hasMatchWithDefaultValidationRules(String password) {
         checkAllValidationRules(password);
+
         return hasMatchAllValidationRules();
     }
 
-
+    @Override
     protected void checkAllValidationRules(String password) {
         if (!rules.hasTheMinRequirementLength(password)) errorCodes.add(INVALID_PASSWORD_LENGTH);
         if (!rules.containsAtLeastOneUppercaseChar(password)) errorCodes.add(MISSING_UPPERCASE);
