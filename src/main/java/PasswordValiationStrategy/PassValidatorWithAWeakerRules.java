@@ -12,15 +12,8 @@ public class PassValidatorWithAWeakerRules extends AbstractPasswordValidator {
         super(MORE_THAN_8_CHARS);
     }
 
-
     @Override
-    public boolean isValid(String password) {
-        return hasMatchWithDefaultValidationRules(password);
-    }
-
-    private boolean hasMatchWithDefaultValidationRules(String password) {
-        checkAllValidationRules(password);
-
+    protected boolean hasMatchWithDefaultValidationRules(String password) {
         return hasMatchAllValidationRules();
     }
 

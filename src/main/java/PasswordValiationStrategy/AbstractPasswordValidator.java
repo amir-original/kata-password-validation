@@ -1,7 +1,6 @@
 package PasswordValiationStrategy;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 import static PasswordValiationStrategy.ErrorCode.*;
 
@@ -12,6 +11,19 @@ public abstract class AbstractPasswordValidator implements PasswordValidatorStra
 
     public AbstractPasswordValidator(PasswordLength passwordLength) {
         this.rules = new PasswordValidationRules(passwordLength);
+    }
+
+    @Override
+    public boolean isValid(String password) {
+        checkAllValidationRules(password);
+
+        return hasMatchWithDefaultValidationRules(password);
+    }
+
+    protected boolean hasMatchWithDefaultValidationRules(String password) {
+        if (errorCodes.isEmpty()) return true;
+
+        throw new InvalidPasswordException(errorCodes);
     }
 
     protected void checkAllValidationRules(String password) {

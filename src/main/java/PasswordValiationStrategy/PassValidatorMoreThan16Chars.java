@@ -10,13 +10,6 @@ public class PassValidatorMoreThan16Chars extends AbstractPasswordValidator {
     }
 
     @Override
-    public boolean isValid(String password) {
-        checkAllValidationRules(password);
-
-        return errorCodes.isEmpty();
-    }
-
-    @Override
     protected void checkAllValidationRules(String password) {
         super.checkAllValidationRules(password);
 
