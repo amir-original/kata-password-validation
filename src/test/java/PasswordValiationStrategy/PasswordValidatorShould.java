@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static PasswordValiationStrategy.ErrorCode.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class PasswordValidatorShould {
 
@@ -37,6 +38,7 @@ public class PasswordValidatorShould {
             new PasswordValidator("AbCdEfG_hIj", new PassValidatorMoreThan8Chars()).isValid();
             new PasswordValidator("_aSbcdefghij", new PassValidatorMoreThan6Chars()).isValid();
             new PasswordValidator("abcdEf____", new PassValidatorMoreThan6Chars()).isValid();
+            fail();
         } catch (InvalidPasswordException e) {
             assertThat(e.getErrors()).containsOnly(MISSING_NUMBER);
         }
@@ -47,7 +49,8 @@ public class PasswordValidatorShould {
         try {
             new PasswordValidator("ABCJ1245_", new PassValidatorMoreThan6Chars()).isValid();
             new PasswordValidator("ABCDEFGHIJ1245_", new PassValidatorMoreThan8Chars()).isValid();
-            new PasswordValidator("ABCDEFGHIJ12447sfe__5_", new PassValidatorMoreThan16Chars()).isValid();
+            new PasswordValidator("ABCDEFGHIJ12447__5_", new PassValidatorMoreThan16Chars()).isValid();
+            fail();
         } catch (InvalidPasswordException e) {
             assertThat(e.getErrors()).containsOnly(ErrorCode.MISSING_LOWERCASE);
         }
@@ -60,6 +63,7 @@ public class PasswordValidatorShould {
             new PasswordValidator("__abcde56", new PassValidatorMoreThan6Chars()).isValid();
             new PasswordValidator("__abcdefghij123456", new PassValidatorMoreThan8Chars()).isValid();
             new PasswordValidator("cvscdefghijsr556_____", new PassValidatorMoreThan16Chars()).isValid();
+            fail();
         } catch (InvalidPasswordException e) {
             assertThat(e.getErrors()).containsOnly(ErrorCode.MISSING_UPPERCASE);
         }
@@ -71,6 +75,7 @@ public class PasswordValidatorShould {
         try {
             new PasswordValidator("abcdeAVfghij123456", new PassValidatorMoreThan8Chars()).isValid();
             new PasswordValidator("7fytsstghASD123TGD6", new PassValidatorMoreThan16Chars()).isValid();
+            fail();
         } catch (InvalidPasswordException e) {
             assertThat(e.getErrors()).containsOnly(MISSING_UNDERSCORE);
         }
@@ -82,28 +87,28 @@ public class PasswordValidatorShould {
             new PasswordValidator("_Aab8", new PassValidatorMoreThan6Chars()).isValid();
             new PasswordValidator("abcD7_", new PassValidatorMoreThan8Chars()).isValid();
             new PasswordValidator("Ab_cDeUYR7", new PassValidatorMoreThan16Chars()).isValid();
+            fail();
         } catch (InvalidPasswordException e) {
             assertThat(e.getErrors()).containsOnly(INVALID_PASSWORD_LENGTH);
         }
     }
 
     @Test
-    void return_true_if_only_misses_a_rule_of_all_conditions_in_new_password_validator() {
+    void valid_password_is_only_misses_a_rule_of_all_conditions_in_new_password_validator() {
         assertThat(new PasswordValidator("Acabcd124537",
                 new PassValidatorWithAWeakerRules()).isValid()).isTrue();
     }
 
     @Test
-    void return_false_if_misses_more_than_one_rule_of_all_condition_in_new_password_validator() {
+    void invalid_password_is_misses_more_than_one_rule_of_all_condition_in_new_password_validator() {
         try {
             new PasswordValidator("cabcd124537", new PassValidatorWithAWeakerRules()).isValid();
+            fail();
         } catch (InvalidPasswordException e) {
             assertThat(e.getErrors())
                     .containsOnly(MISSING_UPPERCASE,
                             MISSING_UNDERSCORE,
                             ILLEGAL_NUMBER_OF_FAILURES_ALLOWED);
-
         }
     }
-
 }
